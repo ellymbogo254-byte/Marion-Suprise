@@ -138,24 +138,22 @@ const loveMessage =
 
 function revealLove() {
     const song = document.getElementById("lovesong");
-      song.play();
+    song.play();
 
-      const secret = document.getElementById("secret");
-      secret.style.display = "block";
-      
+    const secret = document.getElementById("secret");
+    secret.style.display = "block";
+
     const message = document.getElementById("message");
 
-    if (secret.style.display === "block") return;
+    message.innerHTML = "HELLO MARION ❤️";
 
-    secret.style.display = "block";
-    message.textContent = "";
     let i = 0;
 
-    const typing = setInterval(() => {
-        message.textContent += loveMessage[i];
+    const typing = setInterval(function() {
+        message.innerHTML = loveMessage.substring(0, i);
         i++;
 
-        if (i >= loveMessage.length) {
+        if (i > loveMessage.length) {
             clearInterval(typing);
         }
     }, 65);
