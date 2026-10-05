@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Marion ❤️</title>
 
 <style>
@@ -28,6 +27,7 @@ body {
 .container {
     padding: 25px;
     max-width: 500px;
+    width: 100%;
     z-index: 2;
 }
 
@@ -66,6 +66,7 @@ button {
     cursor: pointer;
     box-shadow: 0 0 20px #ff1493;
     transition: transform 0.3s;
+    margin: 8px;
 }
 
 button:hover {
@@ -80,8 +81,53 @@ button:hover {
 }
 
 @keyframes appear {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#nextSection,
+#reasons,
+#finalMessage {
+    display: none;
+    animation: appear 1.5s ease;
+}
+
+.reason {
+    margin: 15px 0;
+    padding: 12px;
+    border-radius: 15px;
+    background: rgba(255, 105, 180, 0.12);
+    border: 1px solid rgba(255, 133, 193, 0.25);
+    animation: appear 1s ease;
+}
+
+#lastButton {
+    animation: gentleShake 2s infinite;
+}
+
+@keyframes gentleShake {
+    0%, 90%, 100% {
+        transform: rotate(0);
+    }
+    93% {
+        transform: rotate(-3deg);
+    }
+    96% {
+        transform: rotate(3deg);
+    }
+}
+
+.final-love {
+    color: #ff85c1;
+    font-size: 1.5rem;
+    line-height: 1.7;
+    text-shadow: 0 0 15px #ff1493;
 }
 
 .floating-heart {
@@ -102,12 +148,13 @@ button:hover {
 </head>
 
 <body>
+
 <div class="container">
+
     <h1>For My Marion 💕</h1>
 
-      <audio id="lovesong" preload="auto">
-        <source src=" ./Heaven%20Baby%20Remix.mp3"
-        type="audio/mpeg">
+    <audio id="lovesong" preload="auto">
+        <source src="./Heaven%20Baby%20Remix.mp3" type="audio/mpeg">
     </audio>
 
     <div class="heart">❤️</div>
@@ -122,22 +169,85 @@ button:hover {
     </button>
 
     <div id="secret">
+
         <h2>My Sweet Marion 🌹</h2>
-        <p  id="message" style="
-    min-height: 100px;
-    display: block;
-    color: #ff4f81;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 1.6;
-    opacity: 1;
-    visibility: visible;
-              "></p>
+
+        <p id="message" style="
+            min-height: 100px;
+            display: block;
+            color: #ff4f81;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1.6;
+            opacity: 1;
+            visibility: visible;
+        "></p>
+
         <p>Forever grateful to have you in my life. ❤️</p>
+
+        <div id="nextSection">
+
+            <button onclick="showSecretMessage()">
+                One thing I don't say enough… 💭
+            </button>
+
+        </div>
+
     </div>
+
+    <div id="reasons">
+
+        <h2>Do you know why I love having you in my life? 🥰</h2>
+
+        <div class="reason">
+            Your smile has a way of making my whole mood better. ❤️
+        </div>
+
+        <div class="reason">
+            Talking to you can turn an ordinary day into a memorable one. 🥹
+        </div>
+
+        <div class="reason">
+            You're someone I never want to take for granted. 🌹
+        </div>
+
+        <div class="reason">
+            You make being myself feel easy. 🫶
+        </div>
+
+        <div class="reason">
+            And honestly… I just really, really like having you in my life. ❤️
+        </div>
+
+        <button id="lastButton" onclick="showFinalMessage()">
+            One last thing… 👀
+        </button>
+
+    </div>
+
+    <div id="finalMessage">
+
+        <div class="heart">💖</div>
+
+        <p class="final-love">
+            Marion… ❤️<br><br>
+
+            You're my favorite notification. 🥰<br><br>
+
+            And if I had to choose again,<br>
+            I'd still choose you. 🌹
+        </p>
+
+        <p>
+            Thank you for being you. ❤️
+        </p>
+
+    </div>
+
 </div>
 
 <script>
+
 const loveMessage =
     "Marion, if I could give you one thing in this world, " +
     "it would be the ability to see yourself through my eyes. " +
@@ -145,42 +255,122 @@ const loveMessage =
     "No matter how busy life gets, I will always appreciate " +
     "the beautiful memories we make together. I love you! ❤️";
 
+
+const secretMessage =
+    "Sometimes I wonder if you realize just how special you are to me. " +
+    "It's not only your smile or the way you make me feel happy — " +
+    "it's the little things about you that somehow stay in my mind " +
+    "even when we're apart. If I could freeze one moment, " +
+    "I'd choose one where you're smiling, just so I could keep " +
+    "that happiness forever. 🥹❤️ " +
+    "And if you ever wonder what makes you so special to me, " +
+    "the answer is simple: You're you. And somehow, " +
+    "that's more than enough to make my heart choose you every time. ❤️";
+
+
 function revealLove() {
-      const song = document.getElementById("lovesong");
-    song.play();
+
+    const song = document.getElementById("lovesong");
+
+    song.play().catch(() => {
+        console.log("Music will start after interaction.");
+    });
 
     const secret = document.getElementById("secret");
+
     secret.style.display = "block";
 
     const message = document.getElementById("message");
+
     message.innerHTML = "";
 
     let i = 0;
 
     const typing = setInterval(function() {
+
         message.innerHTML = loveMessage.substring(0, i);
+
         i++;
 
         if (i > loveMessage.length) {
+
             clearInterval(typing);
+
+            setTimeout(function() {
+                document.getElementById("nextSection").style.display = "block";
+            }, 700);
         }
+
     }, 65);
 }
 
+
+function showSecretMessage() {
+
+    const nextSection = document.getElementById("nextSection");
+
+    nextSection.innerHTML = `
+        <p style="
+            color:#ffb6d9;
+            font-size:18px;
+            line-height:1.8;
+        ">
+        ${secretMessage}
+        </p>
+
+        <button onclick="showReasons()">
+            Okay… there's more 🥰
+        </button>
+    `;
+
+}
+
+
+function showReasons() {
+
+    document.getElementById("reasons").style.display = "block";
+
+    document.getElementById("reasons").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+function showFinalMessage() {
+
+    document.getElementById("finalMessage").style.display = "block";
+
+    document.getElementById("reasons").style.display = "none";
+
+}
+
+
 function createHeart() {
+
     const heart = document.createElement("div");
+
     heart.className = "floating-heart";
+
     heart.textContent = "♥️";
+
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (15 + Math.random() * 25) + "px";
-    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+    heart.style.fontSize =
+        (15 + Math.random() * 25) + "px";
+
+    heart.style.animationDuration =
+        (4 + Math.random() * 4) + "s";
 
     document.body.appendChild(heart);
 
     setTimeout(() => heart.remove(), 8000);
 }
 
+
 setInterval(createHeart, 400);
+
 </script>
+
 </body>
 </html>
